@@ -1,0 +1,19 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Andy Molenda"
+            }
+        ],
+        "Category": "Utilities",
+        "Description": "A calm cheatsheet of the keymap on your ZMK keyboard, read over ZMK Studio",
+        "Icon": "input-keyboard",
+        "Id": "com.nirokato.zmkkeymap",
+        "License": "MIT",
+        "Name": "ZMK Keymap",
+        "Version": "0.1.0",
+        "Website": "https://github.com/nirokato/plasma-zmk-keymap"
+    },
+    "KPackageStructure": "Plasma/Applet",
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

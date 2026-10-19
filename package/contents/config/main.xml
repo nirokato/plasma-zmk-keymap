@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name=""/>
+  <group name="General">
+    <!-- 0: every layer as a tile; 1: one at a time; 2: tiles until too small, then one -->
+    <entry name="layerMode" type="Int">
+      <default>0</default>
+    </entry>
+    <!-- 0: symbols, 1: words -->
+    <entry name="legendStyle" type="Int">
+      <default>0</default>
+    </entry>
+    <entry name="ghostTransparent" type="Bool">
+      <default>true</default>
+    </entry>
+    <!-- empty: the helper's default, ~/.local/share/plasma-zmk-keymap/keymap.json -->
+    <entry name="keymapFile" type="String">
+      <default></default>
+    </entry>
+    <entry name="currentLayer" type="Int">
+      <default>0</default>
+    </entry>
+  </group>
+</kcfg>
