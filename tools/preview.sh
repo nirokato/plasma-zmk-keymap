@@ -2,7 +2,8 @@
 # Render the widget's keymap view to PNGs without Plasma.
 #   tools/preview.sh [keymap.json] [outdir]
 # keymap.json defaults to the bundled Corne fixture. SIZES overrides the list
-# of renders; LAYERS=n pads the keymap to n layers to check tile arrangements.
+# of renders (keys: name w h, optional layer mode text dark bare ink paper
+# accent); LAYERS=n pads the keymap to n layers to check tile arrangements.
 set -euo pipefail
 root=$(cd "$(dirname "$0")/.." && pwd)
 out=$(realpath -m "${2:-$root/build/preview}")

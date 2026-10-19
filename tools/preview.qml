@@ -36,9 +36,9 @@ Window {
         color: Kirigami.Theme.backgroundColor
 
         Kirigami.Theme.inherit: false
-        Kirigami.Theme.textColor: win.dark ? "#fcfcfc" : "#232629"
-        Kirigami.Theme.backgroundColor: win.dark ? "#202326" : "#eff0f1"
-        Kirigami.Theme.highlightColor: "#3daee9"
+        Kirigami.Theme.textColor: win.sizes[win.index].ink || (win.dark ? "#fcfcfc" : "#232629")
+        Kirigami.Theme.backgroundColor: win.sizes[win.index].paper || (win.dark ? "#202326" : "#eff0f1")
+        Kirigami.Theme.highlightColor: win.sizes[win.index].accent || "#3daee9"
 
         Gradient {
             id: wallpaper
