@@ -10,6 +10,7 @@ KCM.SimpleKCM {
     property alias cfg_legendStyle: legendStyle.currentIndex
     property alias cfg_ghostTransparent: ghostTransparent.checked
     property alias cfg_keymapFile: keymapFile.text
+    property alias cfg_serialPort: serialPort.text
     property int cfg_currentLayer
 
     // AppletConfiguration hands every page a *Default for every key
@@ -17,6 +18,7 @@ KCM.SimpleKCM {
     property int cfg_legendStyleDefault
     property bool cfg_ghostTransparentDefault
     property string cfg_keymapFileDefault
+    property string cfg_serialPortDefault
     property int cfg_currentLayerDefault
 
     Kirigami.FormLayout {
@@ -47,6 +49,13 @@ KCM.SimpleKCM {
 
         Item {
             Kirigami.FormData.isSection: true
+        }
+
+        QQC2.TextField {
+            id: serialPort
+            Kirigami.FormData.label: i18n("Serial port:")
+            Layout.fillWidth: true
+            placeholderText: i18n("Detect automatically")
         }
 
         QQC2.TextField {

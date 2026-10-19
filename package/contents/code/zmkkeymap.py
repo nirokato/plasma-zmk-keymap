@@ -14,6 +14,7 @@ framing code below covers just the slice of zmk-studio-messages we use.
 import argparse
 import datetime
 import glob
+import grp
 import json
 import os
 import select
@@ -171,11 +172,15 @@ def find_port():
 class SerialPort:
     def __init__(self, path):
         self.fd = os.open(path, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
-        tty.setraw(self.fd)
-        attrs = termios.tcgetattr(self.fd)
-        attrs[2] |= termios.CLOCAL | termios.CREAD
-        termios.tcsetattr(self.fd, termios.TCSANOW, attrs)
-        termios.tcflush(self.fd, termios.TCIOFLUSH)
+        try:
+            tty.setraw(self.fd)
+            attrs = termios.tcgetattr(self.fd)
+            attrs[2] |= termios.CLOCAL | termios.CREAD
+            termios.tcsetattr(self.fd, termios.TCSANOW, attrs)
+            termios.tcflush(self.fd, termios.TCIOFLUSH)
+        except termios.error:
+            os.close(self.fd)
+            raise OSError(f"{path} is not a usable serial port.") from None
 
     def write(self, data):
         view = memoryview(data)
@@ -592,8 +597,27 @@ def fail(kind, message):
 def open_client(port):
     path = port or find_port()
     if not path:
-        raise FileNotFoundError("no ZMK Studio serial port found; is the keyboard on USB?")
-    return path, StudioClient(SerialPort(path))
+        raise FileNotFoundError(
+            "No ZMK Studio serial port found. Connect the keyboard over USB with "
+            "ZMK Studio enabled, or set its serial port in the widget settings."
+        )
+    try:
+        return path, StudioClient(SerialPort(path))
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Serial port {path} doesn't exist.") from None
+    except PermissionError:
+        raise PermissionError(f"No permission to open {path}. {permission_hint(path)}") from None
+
+
+def permission_hint(path):
+    try:
+        group = grp.getgrgid(os.stat(path).st_gid).gr_name
+    except (OSError, KeyError):
+        return "Add yourself to the group that owns it, then log out and back in."
+    return (
+        f"Add yourself to the {group} group (sudo usermod -aG {group} $USER), "
+        "then log out and back in."
+    )
 
 
 def cmd_probe(args):

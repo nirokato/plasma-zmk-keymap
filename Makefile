@@ -1,6 +1,6 @@
 ID := com.nirokato.zmkkeymap
 
-.PHONY: install upgrade uninstall test preview lint
+.PHONY: install upgrade uninstall dist test preview lint
 
 install:
 	kpackagetool6 -t Plasma/Applet -i package
@@ -10,6 +10,9 @@ upgrade:
 
 uninstall:
 	kpackagetool6 -t Plasma/Applet -r $(ID)
+
+dist:
+	python3 -I tools/dist.py
 
 test:
 	python3 -m unittest discover -s tests

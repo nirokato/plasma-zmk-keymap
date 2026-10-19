@@ -12,7 +12,7 @@
         "License": "MIT",
         "Name": "ZMK Keymap",
         "Version": "0.1.0",
-        "Website": "https://github.com/nirokato/plasma-zmk-keymap"
+        "Website": "https://zmk-keymap.apps.andymolenda.com"
     },
     "KPackageStructure": "Plasma/Applet",
     "X-Plasma-API-Minimum-Version": "6.0"

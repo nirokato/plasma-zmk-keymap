@@ -49,8 +49,9 @@ PlasmoidItem {
 
     function command(args) {
         const file = Plasmoid.configuration.keymapFile;
+        const port = Plasmoid.configuration.serialPort;
         return ["python3", "-I", quote(helper)]
-            .concat(file ? ["--out", quote(file)] : [], args)
+            .concat(file ? ["--out", quote(file)] : [], port ? ["--port", quote(port)] : [], args)
             .join(" ");
     }
 

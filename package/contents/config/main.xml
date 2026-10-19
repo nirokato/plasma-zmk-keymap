@@ -19,6 +19,10 @@
     <entry name="keymapFile" type="String">
       <default></default>
     </entry>
+    <!-- empty: autodetect (by-id name containing "zmk", or ZMK's default USB id) -->
+    <entry name="serialPort" type="String">
+      <default></default>
+    </entry>
     <entry name="currentLayer" type="Int">
       <default>0</default>
     </entry>
